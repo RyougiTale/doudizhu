@@ -3,7 +3,7 @@
 #include "DemoBot.h"
 #include <iostream>
 
-void printCards(const std::vector<Card> &cards)
+void printCards(const std::vector<int> &cards)
 {
     for (auto it = cards.begin(); it != cards.end(); ++it)
     {
@@ -24,7 +24,7 @@ void DemoBot::setPosition(int position)
     std::cout << "my position is " << position << '\n';
 }
 
-void DemoBot::init(const std::vector<Card> &initialCards)
+void DemoBot::init(const std::vector<int> &initialCards)
 {
     printCards(initialCards);
 }
@@ -36,18 +36,15 @@ bool DemoBot::wantToBeLandlord()
 }
 
 // 告诉bot地主的底牌是什么
-void DemoBot::notifyLandlordAndCards(const int landlord, const std::vector<Card> &landlordCards)
+void DemoBot::notifyLandlordAndCards(const int landlord, const std::vector<int> &landlordCards)
 {
     printCards(landlordCards);
 }
 
 // 获取 bot 的出牌决策
-std::vector<Card> DemoBot::play(const LastTwoTurns &lastTwoTurns)
+CardCombination DemoBot::play(const LastTwoTurns &lastTwoTurns)
 {
-    std::cout << "last card: ";
-    printCards(lastTwoTurns.lastTurn);
-    std::cout << "previous card: ";
-    printCards(lastTwoTurns.previousTurn);
+    return PASS{};
 }
 
 // 通知 bot 游戏结束

@@ -3,16 +3,7 @@
 #include <variant>
 #include <iostream>
 
-enum class Suit
-{
-    DIAMONDS,
-    CLUBS,
-    HEARTS,
-    SPADES
-    // 方片, 梅花, 红桃, 黑桃
-};
-
-enum class Rank
+enum class StandardCard
 {
     THREE = 3,
     FOUR,
@@ -31,36 +22,22 @@ enum class Rank
 
 enum class JokerType
 {
-    BLACK_JOKER,
+    BLACK_JOKER = 19,
     RED_JOKER
 };
 
-struct StandardCard
+inline bool is_legal_trump(int num)
 {
-    Suit suit;
-    Rank rank;
-};
+    return (num >= static_cast<int>(StandardCard::THREE) && num <= static_cast<int>(StandardCard::TWO));
+}
 
-// 使用方式：
-// Card card1 = StandardCard{Suit::DIAMONDS, Rank::THREE};
-// Card card2 = JokerType::BLACK_JOKER;
-using Card = std::variant<StandardCard, JokerType>;
+inline bool is_legal_card(int num)
+{
+    return is_legal_trump(num) || num == static_cast<int>(JokerType::BLACK_JOKER) || num == static_cast<int>(JokerType::RED_JOKER);
+}
 
-// deprecated:
-int cardToInt(const Suit &suit, const Rank &rank);
-int cardToInt(const JokerType &joker);
-std::pair<Suit, Rank> intToCardStandard(int value);
-JokerType intToCardJoker(int value);
-
-// new:
-template <typename T>
-struct always_false : std::false_type{};
-int cardToInt(const Card &card);
-Card intToCard(int value);
-
-// for log:
-std::ostream &operator<<(std::ostream &os, const StandardCard &card);
-std::ostream &operator<<(std::ostream &os, const JokerType &joker);
-std::ostream &operator<<(std::ostream &os, const Card &card);
+inline bool is_legal_3_to_A(int num){
+    return (num >= static_cast<int>(StandardCard::THREE) && num <= static_cast<int>(StandardCard::ACE));
+}
 
 #endif
