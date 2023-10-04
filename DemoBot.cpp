@@ -36,13 +36,13 @@ bool DemoBot::wantToBeLandlord()
 }
 
 // 告诉bot地主的底牌是什么
-void DemoBot::notifyLandlordAndCards(const int landlord, const std::vector<int> &landlordCards)
+void DemoBot::notifyLandlordAndCards(const int landlord, const std::vector<int> landlordCards)
 {
     printCards(landlordCards);
 }
 
 // 获取 bot 的出牌决策
-CardCombination DemoBot::play(const LastTwoTurns &lastTwoTurns)
+CardCombination DemoBot::play(const LastTwoTurns lastTwoTurns)
 {
     return PASS{};
 }

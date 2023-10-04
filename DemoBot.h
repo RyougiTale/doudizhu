@@ -16,10 +16,10 @@ public:
     bool wantToBeLandlord();
 
     // 告诉bot地主的底牌是什么
-    void notifyLandlordAndCards(const int landlord, const std::vector<int> &landlordCards);
+    void notifyLandlordAndCards(const int landlord, const std::vector<int> landlordCards);
 
     // 获取 bot 的出牌决策
-    CardCombination play(const LastTwoTurns &lastTwoTurns);
+    CardCombination play(const LastTwoTurns lastTwoTurns);
 
     // 通知 bot 游戏结束
     void notifyGameOver();
